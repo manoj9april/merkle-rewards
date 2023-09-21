@@ -28,7 +28,7 @@ jobs:
         uses: aquiladev/ipfs-action@v0.3.1
         with:
           # Directory path to upload
-          path: ../socializing-pool-merkle
+          path: ~/socializing-pool-merkle
           # Pin object when adding
           # pin: # optional, default is true
           # Human name for pin
