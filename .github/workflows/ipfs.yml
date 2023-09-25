@@ -22,7 +22,8 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout github repo
+        uses: actions/checkout@v2
       
       - name: Fetch updated files
         uses: tj-actions/changed-files@v39
@@ -37,6 +38,10 @@ jobs:
           echo "ERROR: no or more than one file changed in socializing-pool-merkle folder"
           echo "Files changed in socializing-pool-merkle folder: ${{ steps.changed-files-yaml.outputs.json_all_changed_files }}"
           exit 1
+
+      - name: Checkout github repo
+        uses: actions/checkout@v2
+      
       - name: Upload to IPFS
         # You may pin to the exact commit or the version.
         # uses: aquiladev/ipfs-action@12cc5d253735dc2894fe19828bd042c8532acc5d
