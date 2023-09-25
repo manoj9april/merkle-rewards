@@ -25,7 +25,7 @@ jobs:
       - uses: actions/checkout@v2
       - name: Fetch updated files
         run: |
-          git diff --name-only HEAD~1 HEAD 
+          git diff --name-only main~1 main 
 # | grep "socializing-pool-merkle/" >> $GITHUB_OUTPUT
         id: fetch_updated_files
       
