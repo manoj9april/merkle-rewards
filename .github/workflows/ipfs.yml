@@ -35,7 +35,7 @@ jobs:
       - name: Run step if test file(s) change
         if: steps.changed-files-yaml.outputs.json_all_changed_files_count != '1'
         run: |
-          echo "ERROR: no or more than one file changed in socializing-pool-merkle folder"
+          echo "ERROR: ${{ steps.changed-files-yaml.outputs.json_all_changed_files_count }} file/s changed in socializing-pool-merkle folder. Only one file change allowed."
           echo "Files changed in socializing-pool-merkle folder: ${{ steps.changed-files-yaml.outputs.json_all_changed_files }}"
           exit 1
 
