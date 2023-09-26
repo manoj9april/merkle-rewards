@@ -22,8 +22,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - name: Checkout github repo
-        uses: actions/checkout@v2
       - name: Fetch updated files
         uses: tj-actions/changed-files@v39
         with:
