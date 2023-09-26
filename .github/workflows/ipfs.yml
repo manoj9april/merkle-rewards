@@ -55,13 +55,14 @@ jobs:
           # [infura] Project Secret. Required for infura service
           infuraProjectSecret: ${{ secrets.INFURA_PROJECT_SECRET }} # optional
 
-      - name: Checkout github repo
-        uses: actions/checkout@v2
       - name: Bump version and push tag
         id: tag_version
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+      
+      - name: Checkout github repo
+        uses: actions/checkout@v2          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
