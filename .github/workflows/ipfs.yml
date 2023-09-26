@@ -60,9 +60,6 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      
-      - name: Checkout github repo
-        uses: actions/checkout@v2          
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -79,7 +76,7 @@ jobs:
             - https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
             - ipfs://${{steps.ipfs_upload.outputs.ipfs}}
             
-            ${{github.workspace}}
+            ${{github.repositoryUrl}}/blob/${{GITHUB_REF_NAME}}/${{ steps.changed_files.outputs.json_all_changed_files }}
             
             ${{ steps.tag_version.outputs.changelog }}
           draft: false
