@@ -60,8 +60,9 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.1
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-      - name: Checkout github repo
-        uses: actions/checkout@v2
+      - name: Extract Branch Name
+        id: extract_branch_name
+        run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
@@ -71,15 +72,13 @@ jobs:
           tag_name: ${{ steps.tag_version.outputs.new_tag }}
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: |
-            file changed: ${{ steps.changed_files.outputs.json_all_changed_files }}
+            file changed: [${{ steps.changed_files.outputs.json_all_changed_files }}](https://github.com/${{ github.repository }}/blob/${{ steps.extract_branch_name.outputs.branch }}/${{ steps.changed_files.outputs.json_all_changed_files }})
             ipfs hash: `${{steps.ipfs_upload.outputs.ipfs}}`
             
             You can also access the Reward merkle trees from an IPFS gateway.
             - https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
             - ipfs://${{steps.ipfs_upload.outputs.ipfs}}
 
-            https://github.com/${{ github.repository }}/blob/${GITHUB_REF_NAME}/${{ steps.changed_files.outputs.json_all_changed_files }}
-            
             ${{ steps.tag_version.outputs.changelog }}
           draft: false
           prerelease: false
