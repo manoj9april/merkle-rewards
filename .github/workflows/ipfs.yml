@@ -77,6 +77,6 @@ jobs:
             You can also access the Reward merkle trees from an IPFS gateway.
             ipfs gateway link: https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
             
-            channel log: ${{ steps.github-tag-action.outputs.changelog }}
+            channel log: ${{ steps.tag_version.outputs.changelog }}
           draft: false
           prerelease: false
