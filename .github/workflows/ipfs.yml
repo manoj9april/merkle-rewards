@@ -72,10 +72,14 @@ jobs:
           release_name: Release ${{ steps.tag_version.outputs.new_tag }}
           body: |
             file changed: ${{ steps.changed_files.outputs.json_all_changed_files }}
-            ipfs hash: ${{steps.ipfs_upload.outputs.ipfs}}
+            ipfs hash: `${{steps.ipfs_upload.outputs.ipfs}}`
             
             You can also access the Reward merkle trees from an IPFS gateway.
-            ipfs gateway link: https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
+            - https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
+            - ipfs://${{steps.ipfs_upload.outputs.ipfs}}
+            
+            ${{GITHUB_WORKSPACE}}
+            ${{github.workspace}}
             
             ${{ steps.tag_version.outputs.changelog }}
           draft: false
