@@ -78,7 +78,7 @@ jobs:
             - https://ipfs.io/ipfs/${{steps.ipfs_upload.outputs.ipfs}}
             - ipfs://${{steps.ipfs_upload.outputs.ipfs}}
             
-            ${{github.repositoryUrl}}/blob/${{GITHUB_REF_NAME}}/${{ steps.changed_files.outputs.json_all_changed_files }}
+            ${{github.repositoryUrl}}/blob/$GITHUB_REF_NAME/${{ steps.changed_files.outputs.json_all_changed_files }}
             
             ${{ steps.tag_version.outputs.changelog }}
           draft: false
